@@ -1,23 +1,33 @@
+# Functions of the webscraper
 from proxies import ReturnProxy
 from bots.aliexpress import AliexpressMain
-from bots import aliexpress, amazon, ebay, pubmed
-from database import excel, mongodb, postgresql
+from bots.amazon import AmazonMain
+from bots.ebay import EbayMain
+from bots.pubmed import PubmedMain
+from database.excel import ExcelMain
+from database.mongodb import MongodbMain
+from database.postgresql import PostgreSQLMain
+
+# third party modules
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from os import getcwd
+import time
+
 
 def RunWebscraper():
     """Main function, get the user inputs, import the bots for scraping and conect with the databases"""
-    PROXY = ReturnProxy
-    al = AliexpressMain
-    am = amazon.AmazonMain
-    eb = ebay.EbayMain
-    pb = pubmed.PubmedMain
-    exc = excel.ExcelMain
-    mdb = mongodb.MongodbMain
-    psql = postgresql.PostgreSQLMain
-    print(PROXY())
+    driver = GetDriver()
+    driver.get("https://pubmed.ncbi.nlm.nih.gov/")
+    time.sleep(5)
+    driver.quit()
 
-def GetDriver():
-    """Return the driver with the ajusted parameters"""
-    pass
+def GetDriver(**kwargs):
+    """Return a selenium webdriver instance, used to control the browser"""
+    options = Options()
+    options.binary_location = 'C:\\Program Files\\BraveSoftware\\Brave-Browser\\Application\\brave.exe'
+    driver = webdriver.Chrome(executable_path=f"{getcwd()}\chromedriver.exe", options=options)
+    return driver
 
 if __name__ == '__main__':
     RunWebscraper()

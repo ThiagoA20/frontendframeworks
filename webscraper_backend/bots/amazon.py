@@ -1,3 +1,3 @@
 def AmazonMain():
-    """Recebe o driver e retorna um dataset com produtos da Amazon"""
-    pass
+    """Receive the driver and return a dataset with the products of Amazon"""
+    return "Amazon testcase"

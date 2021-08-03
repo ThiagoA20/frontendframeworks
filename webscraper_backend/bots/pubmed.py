@@ -1,3 +1,6 @@
+import pandas as pd
+import numpy as np
+
 def PubmedMain():
-    """Recebe o driver e retorna um dataset com dados do pubmed"""
-    pass
+    """Receive the driver and return a dataset with data of pubmed"""
+    return "PubmedMain testcase"
