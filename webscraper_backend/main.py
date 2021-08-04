@@ -19,6 +19,7 @@ def RunWebscraper():
     """Main function, get the user inputs, import the bots for scraping and conect with the databases"""
     driver = GetDriver()
     driver.get("https://pubmed.ncbi.nlm.nih.gov/")
+    print(driver.current_url)
     time.sleep(5)
     driver.quit()
 
@@ -26,6 +27,7 @@ def GetDriver(**kwargs):
     """Return a selenium webdriver instance, used to control the browser"""
     options = Options()
     options.binary_location = 'C:\\Program Files\\BraveSoftware\\Brave-Browser\\Application\\brave.exe'
+    options.add_experimental_option('prefs', {'intl.accept_languages': 'en,en_US'})
     driver = webdriver.Chrome(executable_path=f"{getcwd()}\chromedriver.exe", options=options)
     return driver
 
