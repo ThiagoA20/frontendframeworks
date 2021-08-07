@@ -8,10 +8,11 @@ def NewsMain(driver, topic):
     time.sleep(2)
     title_results = driver.find_elements_by_class_name("result__title")
     time_results = driver.find_elements_by_class_name("result__timestamp")
+    link_results = driver.find_elements_by_class_name("result__a")
     for i in range(len(title_results)):
         if i == 0:
-            news = np.array([[title_results[i].text, time_results[i].text]])
+            news = np.array([[title_results[i].text, time_results[i].text, link_results[i].get_attribute("href")]])
         else:
-            news = np.append(news, [[title_results[i].text, time_results[i].text]], axis=0)
+            news = np.append(news, [[title_results[i].text, time_results[i].text, link_results[i].get_attribute("href")]], axis=0)
     news = pd.DataFrame(news)
     return news
